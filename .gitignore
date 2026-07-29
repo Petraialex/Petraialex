@@ -1,0 +1,3 @@
+portrait_src.*
+*.png
+__pycache__/
