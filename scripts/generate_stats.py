@@ -235,8 +235,7 @@ def build_langs(by_bytes, by_repos):
             out.append(
                 f'<text class="s" x="{x}" y="{y+2}" font-size="12">{esc(nm.lower())}</text>'
                 f'<rect class="trk" x="{bx}" y="{y-8}" width="{barw}" height="7" rx="3.5"/>'
-                f'<rect class="s" x="{bx}" y="{y-8}" width="{w:.1f}" height="7" rx="3.5">'
-                f'<animate attributeName="width" from="0" to="{w:.1f}" dur="0.7s" begin="{i*0.08:.2f}s" fill="freeze"/></rect>'
+                f'<rect class="s" x="{bx}" y="{y-8}" width="{w:.1f}" height="7" rx="3.5"/>'
                 f'<text class="m" x="{bx+barw+8}" y="{y+2}" font-size="11">'
                 f'{(f"{frac*100:.0f}%") if is_pct else val}</text>')
         return out

@@ -93,43 +93,20 @@ def to_svg(lines, display_w=460):
         f'width="{display_w}" font-family="\'JetBrains Mono\', ui-monospace, monospace" '
         f'font-size="{FONT_SIZE}" xml:space="preserve">'
     )
-    # single fill colour, theme-aware. (This <style> lives INSIDE the .svg file,
-    # so GitHub's README sanitiser never touches it.)
+    # Static, fully-visible text. GitHub embeds README graphics via <img>, and
+    # browsers render <img> SVGs as STATIC images — no SMIL and no CSS animation
+    # advances there. So the portrait must read correctly with zero animation:
+    # every row is simply drawn. Theme colour is CSS (that IS honoured, since the
+    # .svg is a separate resource GitHub's markdown sanitiser never touches).
     out.append(
         '<style>'
         'text{fill:#1f2328}'
         '@media(prefers-color-scheme:dark){text{fill:#e6edf3}}'
-        '.cur{fill:#58a6ff;opacity:0}'
         '</style>'
     )
-    # clip paths: one animated wipe rect per row
-    out.append("<defs>")
-    for i in range(nrows):
-        y = i * LINE_H
-        begin = i * ROW_STAGGER
-        out.append(
-            f'<clipPath id="c{i}"><rect x="0" y="{y:.2f}" width="0" height="{LINE_H:.2f}">'
-            f'<animate attributeName="width" from="0" to="{full_w:.2f}" '
-            f'dur="{ROW_DUR}s" begin="{begin:.2f}s" fill="freeze"/></rect></clipPath>'
-        )
-    out.append("</defs>")
-    # the rows themselves, each clipped by its wipe
     for i, line in enumerate(lines):
         y = i * LINE_H + FONT_SIZE
-        out.append(f'<text x="0" y="{y:.2f}" clip-path="url(#c{i})">{esc(line)}</text>')
-    # cursor block riding each wipe edge, appears then vanishes
-    for i in range(nrows):
-        y = i * LINE_H
-        begin = i * ROW_STAGGER
-        end = begin + ROW_DUR
-        out.append(
-            f'<rect class="cur" x="0" y="{y:.2f}" width="{CHAR_W:.2f}" height="{LINE_H:.2f}">'
-            f'<animate attributeName="x" from="0" to="{full_w - CHAR_W:.2f}" '
-            f'dur="{ROW_DUR}s" begin="{begin:.2f}s" fill="freeze"/>'
-            f'<set attributeName="opacity" to="1" begin="{begin:.2f}s"/>'
-            f'<set attributeName="opacity" to="0" begin="{end:.2f}s"/>'
-            f"</rect>"
-        )
+        out.append(f'<text x="0" y="{y:.2f}">{esc(line)}</text>')
     out.append("</svg>")
     return "\n".join(out)
 

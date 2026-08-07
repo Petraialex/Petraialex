@@ -56,6 +56,6 @@ Every graphic here is generated inside this repo — nothing is embedded from a 
 
 `portrait.svg` is a photo pushed through a 13-character brightness ramp by `scripts/portrait.py`. The stat graphics and these section headings are drawn by [a scheduled action](.github/workflows/refresh.yml) straight from the GitHub GraphQL API, once a day, committing only what changed.
 
-They animate with SMIL inside the SVG, because GitHub strips scripts from READMEs. The headings are images for the same reason — GitHub also strips CSS, so an image is the only way to give them their own typeface.
+Everything is drawn to read correctly as a static image: GitHub renders README graphics as static (it runs no scripts or animation inside them), so nothing here depends on either. The headings are images too — GitHub strips CSS from README text, so an image is the only way to give them their own typeface.
 
 Language totals cover public repositories only. `year.svg` uses the portrait's own ramp — `:` `+` `#` `@`, quiet to loud.
