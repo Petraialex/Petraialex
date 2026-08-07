@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" width="460" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, monospace">
+<style>
+  .s{fill:#1f2328}  .m{fill:#59636e}  .t{fill:#d0d7de}
+  .stk{stroke:#1f2328}  .trk{fill:#eaeef2}
+  @media(prefers-color-scheme:dark){
+    .s{fill:#e6edf3} .m{fill:#7d8590} .t{fill:#30363d}
+    .stk{stroke:#e6edf3} .trk{fill:#21262d}
+  }
+</style>
+<rect fill="none" width="460" height="120"/><text class="m" x="24" y="30" font-size="9.5" letter-spacing="1.2">CURRENT STREAK</text><text class="s" x="23" y="76" font-size="40" font-weight="700">1<tspan class="m" font-size="14" font-weight="400"> days</tspan></text><text class="m" x="24" y="98" font-size="11">aug 6</text><rect class="t" x="232" y="22" width="1" height="80"/><text class="m" x="252" y="30" font-size="9.5" letter-spacing="1.2">LONGEST STREAK</text><text class="s" x="251" y="76" font-size="40" font-weight="700">2<tspan class="m" font-size="14" font-weight="400"> days</tspan></text><text class="m" x="252" y="98" font-size="11">mar 18 → mar 19</text></svg>
